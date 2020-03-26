@@ -1,0 +1,14 @@
+# gke
+auth_kind: serviceaccount
+service_account_file: auth testing-c6125206ea72.json  # service account key file for vertifying and indentifying google account
+project: auth-testing-272315        # Enter the Google Cloud Platform project id here 
+cluster_name: test-auth-cluster     # enter name of cluster, suggested value - name of school
+initial_node_count: 4               # number of nodes in the cluster initially
+username: cluster_admin             # username for accessing cluster master endpoint
+password: sugarlabs-is-awesome      # password for accessing cluster master endpoint
+machine_type: n1-standard-1
+disk_size_gb: 100
+zone: 'asia-northeast1-a'
+# gke node pool
+npname: gkeclus-pool
+np_initial_node_count: 4
