@@ -1,0 +1,5 @@
+- name: Installing Helm 3
+  shell: curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+
+#tiller has been removed from helm 3 and not helm init is not long needed it has been removed, a name is not required or we can use --generate-name flag to automatically generate one
+# detailed list of changes in helm 3 since helm 2 can be found on https://helm.sh/blog/helm-v3-beta/

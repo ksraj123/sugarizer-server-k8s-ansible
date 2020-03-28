@@ -1,0 +1,5 @@
+- hosts: localhost
+  roles:
+   - connect-to-cluster
+  tasks:
+   - shell: helm install schoolPotalApp ./sugarizer-chart

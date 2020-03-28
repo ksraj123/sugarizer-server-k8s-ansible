@@ -1,6 +1,14 @@
-- name: Create a Cluster on Google Kubernetes Engine
-  hosts: localhost
-  connection: local
-  gather_facts: false
-  roles:
-   - createCluster
+# Master playbook - should be executed for first time setup
+
+# setup a task to install the dependencies required for google cloud sdk like google-auth, python
+
+- import_playbook: create-new-cluster.yml
+
+- name: Installing the Google Cloud Sdk
+  import_playbook: install-gcp-sdk.yml
+
+- name: Installing Helm
+  import_playbook: install-helm.yml
+
+- name: Installing Sugarizer School Portal Helm Chart
+  import_playbook: install-sugarizer-chart.yml
