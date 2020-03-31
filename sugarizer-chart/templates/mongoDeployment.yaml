@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ template "mongodb.fullname" . }}-deployment
+  namespace: {{.Values.school.Id}}
 spec:
   replicas: 1
   selector:
@@ -13,16 +14,16 @@ spec:
         app: {{ template "mongodb.fullname" . }}-pod
     spec:
       volumes:
-      - name: nfs-volume
-        nfs:
-          server: {{ .Values.serverVolume.server }}
-          path: /sugarizer_vol/sugarizer-server/docker/db
+        - name: my-pvc-nfs
+          persistentVolumeClaim:
+            claimName: nfs
       containers:
       - name: mongodb
         image: {{ .Values.database.image }}
         volumeMounts:
-        - name: nfs-volume
+        - name: my-pvc-nfs
           mountPath: /data/db
+          subPath: sugarizer-server/docker/db
         command: ["/bin/sh", "-c"]
         args: ["mongod --repair; mongod"]
         env:

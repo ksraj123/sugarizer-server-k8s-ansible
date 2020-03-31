@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  volumes:
+    - name: my-pvc-nfs
+      persistentVolumeClaim:
+        claimName: nfs
+  containers:
+  - name: nginx
+    image: ubuntu
+    volumeMounts:
+    - name: my-pvc-nfs
+      mountPath: /sugarizer-server
+      subPath: sugarizer-server
+    command: ["/bin/sh", "-c"]
+    args: 
+    - sleep 20m

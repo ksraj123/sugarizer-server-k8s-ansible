@@ -1,0 +1,8 @@
+- hosts: localhost
+  tasks:
+   - name: connecting to cluster
+     shell: gcloud container clusters get-credentials {{cluster_name}} --zone {{zone}} --project {{project}}
+   - name: creating new gcp pd
+     shell: gcloud compute disks create --size=10GB --zone={{zone}} {{schoolId}}
+   - name: installing sgarizer-server chart
+     shell: helm install {{schoolId}} ./sugarizer-chart --set school.Id={{schoolId}}
