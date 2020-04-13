@@ -13,7 +13,7 @@ server:
   setupCommands: " cd sugarizer-server; git init;
           git remote add origin https://github.com/ksraj123/sugarizer-server.git;
           git fetch origin master; git pull origin master; npm install;
-          node /sugarizer-server/sugarizer.js /sugarizer-server/env/docker.ini;"
+          nohup node /sugarizer-server/sugarizer.js /sugarizer-server/env/docker.ini & (sleep 100s && (sh add-admin.sh defaultuser password http://127.0.0.1:80/auth/signup && sleep infinity))"
 
 # sugarizer-client settings
 client:
